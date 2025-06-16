@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamesburg Deli & Grocery - Fresh Food Since 1985</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hours-banner {
+            background: linear-gradient(90deg, #1E88E5, #0D47A1);
+        }
+        
+        .menu-category {
+            scroll-margin-top: 100px;
+        }
+        
+        .category-header {
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .category-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #D32F2F, #1E88E5);
+        }
+        
+        .menu-item {
+            transition: all 0.3s ease;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .price {
+            color: #D32F2F;
+            font-weight: 700;
+        }
+        
+        /* Carousel styles */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 2rem;
+        }
+        
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-control:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .carousel-control.prev {
+            left: 20px;
+        }
+        
+        .carousel-control.next {
+            right: 20px;
+        }
+        
+        /* Menu navigation */
+        .menu-nav {
+            position: sticky;
+            top: 80px;
+            z-index: 40;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .menu-nav-item {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #1E88E5;
+            transition: width 0.3s ease;
+        }
+        
+        .menu-nav-item:hover::after, 
+        .menu-nav-item.active::after {
+            width: 100%;
+        }
+        
+        /* Collapsible menu sections */
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        /* Blue accents */
+        .blue-accent {
+            color: #1E88E5;
+        }
+        
+        .blue-bg {
+            background-color: #1E88E5;
+        }
+        
+        .blue-border {
+            border-color: #1E88E5;
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Add these new styles in the existing style section */
+        .menu-section {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .menu-header {
+            background: linear-gradient(90deg, #1E88E5, #0D47A1);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .menu-nav {
+            background: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 80px;
+            z-index: 40;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .menu-nav-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 0.5rem;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .menu-nav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .menu-nav-item {
+            white-space: nowrap;
+            padding: 0.75rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 2rem;
+            background: #f3f4f6;
+            color: #4b5563;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .menu-nav-item:hover {
+            background: #1E88E5;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .menu-category {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .menu-category:last-child {
+            border-bottom: none;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .menu-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            background: white;
+        }
+
+        .menu-item-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .menu-item-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .menu-item-description {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .menu-item-price {
+            font-weight: 700;
+            color: #1E88E5;
+            font-size: 1.125rem;
+        }
+
+        .price-tag {
+            background: #e3f2fd;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            color: #1E88E5;
+            font-weight: 600;
+        }
+
+        .category-badge {
+            background: #e3f2fd;
+            color: #1E88E5;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+
+        .menu-section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-section-subtitle {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .menu-filters {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f3f4f6;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-filter {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background: white;
+            color: #4b5563;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-filter:hover, .menu-filter.active {
+            background: #1E88E5;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Hours Banner (Top of Page) -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm md:text-base">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center divide-y md:divide-y-0 md:divide-x divide-white/30">
+            <!-- Deli & Grocery -->
+            <div class="flex items-center space-x-2 py-2 md:px-6">
+            <i class="fas fa-clock"></i>
+            <span class="font-semibold">Deli &amp; Grocery</span>
+            <span class="text-white/80">(Mon–Sat 6 AM–10 PM | Sun 7 AM–8 PM)</span>
+            </div>
+            <!-- Grill -->
+            <div class="flex items-center space-x-2 py-2 md:px-6">
+            <i class="fas fa-fire"></i>
+            <span class="font-semibold">Grill</span>
+            <span class="text-white/80">(Mon–Sat 6 AM–8 PM | Sun 7 AM–7 PM)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold flex items-center">
+                <span class="text-gray-900">JAMESBURG</span>
+                <span class="text-blue-600 ml-2">DELI & GROCERY</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-800 font-medium hover:text-blue-600 transition">Home</a>
+                <a href="#menu" class="text-gray-800 font-medium hover:text-blue-600 transition">Menu</a>
+                <a href="#visit" class="text-gray-800 font-medium hover:text-blue-600 transition">Visit Us</a>
+            </div>
+            <button class="md:hidden text-gray-800" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white w-full py-2 px-4 shadow-md" id="mobile-menu">
+            <a href="#home" class="block py-2 text-gray-800 font-medium border-b border-gray-100 hover:text-blue-600">Home</a>
+            <a href="#menu" class="block py-2 text-gray-800 font-medium border-b border-gray-100 hover:text-blue-600">Menu</a>
+            <a href="#visit" class="block py-2 text-gray-800 font-medium hover:text-blue-600">Visit Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="block">JAMESBURG DELI</span>
+                    <span class="block text-3xl md:text-4xl font-light mt-2">& GROCERY</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8">Fresh sandwiches, groceries, and friendly service since 1985</p>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <a href="#menu" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition">View Menu</a>
+                    <a href="#visit" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition">Visit Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Carousel -->
+    <section class="container mx-auto px-4 my-16">
+        <div class="carousel">
+            <div class="carousel-inner" id="carousel-inner">
+                <div class="carousel-item">
+                    <img src="jamesburg_media/IMG_0989.jpeg" alt="Deli Outside View">
+                    <div class="carousel-caption">
+                        <h3 class="text-2xl font-bold">Our Deli</h3>
+                        <p class="text-lg">Get Delicious Food & Essentials</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="jamesburg_media/IMG_0990.jpeg" alt="Deli Lottery & Food">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="jamesburg_media/IMG_0991.jpeg" alt="Deli Outside View">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="jamesburg_media/IMG_0992.jpeg" alt="Deli Outside View">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="jamesburg_media/IMG_0993.jpeg" alt="Deli Outside View">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="jamesburg_media/IMG_0994.jpeg" alt="Deli Outside View">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="jamesburg_media/IMG_0995.jpeg" alt="Deli Outside View">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="jamesburg_media/IMG_0996.jpeg" alt="Deli Outside View">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control prev" onclick="prevSlide()">❮</button>
+            <button class="carousel-control next" onclick="nextSlide()">❯</button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <!-- Menu Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Menu</h2>
+                <p class="text-xl text-gray-600">Fresh, delicious food made with care since 1985</p>
+            </div>
+
+            <!-- Menu Navigation -->
+            <div class="menu-nav bg-white rounded-xl shadow-lg mb-8">
+                <div class="container mx-auto px-4">
+                    <div class="menu-nav-container flex overflow-x-auto py-4 space-x-2">
+                        <a href="#favorites" class="menu-nav-item">Favorites</a>
+                        <a href="#breakfast" class="menu-nav-item">Breakfast</a>
+                        <a href="#omelet-platters" class="menu-nav-item">Omelet Platters</a>
+                        <a href="#cold-subs" class="menu-nav-item">Cold Subs & Deli</a>
+                        <a href="#hot-subs" class="menu-nav-item">Hot Subs</a>
+                        <a href="#wraps" class="menu-nav-item">Wraps</a>
+                        <a href="#burgers" class="menu-nav-item">Burgers</a>
+                        <a href="#side-orders" class="menu-nav-item">Side Orders</a>
+                        <a href="#garden-salad" class="menu-nav-item">Garden Salad</a>
+                        <a href="#salads-soup" class="menu-nav-item">Salads & Soup</a>
+                        <a href="#party-heroes" class="menu-nav-item">Party Heroes</a>
+                        <a href="#cold-cut-platters" class="menu-nav-item">Cold Cut Platters</a>
+                        <a href="#sandwiches" class="menu-nav-item">Sandwiches</a>
+                        <a href="#hot-platters" class="menu-nav-item">Hot Platters</a>
+                        <a href="#sides" class="menu-nav-item">Sides</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Content -->
+            <div class="space-y-8">
+                <!-- Favorites Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="favorites">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Favorites</h3>
+                            <p class="text-gray-600">Our most popular items</p>
+                        </div>
+                        <span class="category-badge">Popular</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Favorites Items -->
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Gyro Platter</h4>
+                                    <p class="text-gray-600 text-sm">Traditional gyro meat served with seasoned rice or fries, tzatziki sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$9.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Special Gyro</h4>
+                                    <p class="text-gray-600 text-sm">Gyro meat with lettuce, tomato, and tzatziki sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Falafel Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Crispy falafel with lettuce, tomato, and tahini sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Falafel & Rice Platter</h4>
+                                    <p class="text-gray-600 text-sm">Falafel served with rice, salad, and tahini sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$9.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken & Rice Platter</h4>
+                                    <p class="text-gray-600 text-sm">Grilled chicken over rice served with salad and white sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$9.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Steak & Rice Platter</h4>
+                                    <p class="text-gray-600 text-sm">Seasoned steak strips over rice with fresh salad and house sauces</p>
+                                    <p class="text-gray-600 text-sm mt-1">$9.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Wings & Rice Platter</h4>
+                                    <p class="text-gray-600 text-sm">Chicken wings served with rice and your choice of sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$9.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">4pc Chicken Finger & Fries</h4>
+                                    <p class="text-gray-600 text-sm">Four chicken fingers served with fries</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">5pc Wings & Fries</h4>
+                                    <p class="text-gray-600 text-sm">Five chicken wings served with fries</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">9pc Nugget & Fries</h4>
+                                    <p class="text-gray-600 text-sm">Nine chicken nuggets served with fries</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continue with other sections in the specified order -->
+                <!-- Each section will follow the same pattern with grid-cols-1 md:grid-cols-2 lg:grid-cols-3 -->
+                <!-- Breakfast Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="breakfast">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Breakfast</h3>
+                            <p class="text-gray-600">Available on regular, whole wheat, rye, Kaiser roll, or spinach wraps</p>
+                        </div>
+                        <span class="category-badge">Most Popular</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Breakfast Items -->
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Egg White</h4>
+                                    <p class="text-gray-600 text-sm">Fresh egg whites cooked to perfection</p>
+                                    <p class="text-gray-600 text-sm mt-1">$3.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Egg on Roll</h4>
+                                    <p class="text-gray-600 text-sm">Fresh egg served on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$3.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Egg & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Egg with melted cheese on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$3.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Bacon Egg & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Crispy bacon, fried egg, and melted cheese on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$5.62</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Sausage Egg & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Savory sausage patty with a fried egg and cheese on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$5.62</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Pork Roll Egg & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Pork roll slices, fried egg, and cheese served on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$5.62</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Ham Egg & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Ham, fried egg, and cheese on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$5.62</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">B.L.T.</h4>
+                                    <p class="text-gray-600 text-sm">Bacon, lettuce, and tomato on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Grilled Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Melted cheese on grilled bread</p>
+                                    <p class="text-gray-600 text-sm mt-1">$4.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Grilled Cheese with Bacon or Tomato</h4>
+                                    <p class="text-gray-600 text-sm">Grilled cheese with your choice of bacon or tomato</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Turkey Bacon Egg & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Turkey bacon with egg and cheese on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Beef Bacon Egg & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Beef bacon with egg and cheese on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Pastrami Egg & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Pastrami with egg and cheese on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Steak Egg & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Steak with egg and cheese on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Turkey Egg White</h4>
+                                    <p class="text-gray-600 text-sm">Turkey with egg whites on a roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Protein Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Three egg whites, tomato, onion, and your choice of turkey or grilled chicken</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Belly Buster on 1/2 Sub</h4>
+                                    <p class="text-gray-600 text-sm">Loaded breakfast sandwich on half sub roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$9.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Breakfast Platter</h4>
+                                    <p class="text-gray-600 text-sm">Choice of pork roll, bacon, or sausage with two eggs, home fries, and toast</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Breakfast Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Your choice of breakfast ingredients wrapped in a tortilla</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Hash Browns (2 pc)</h4>
+                                    <p class="text-gray-600 text-sm">Crispy hash brown patties</p>
+                                    <p class="text-gray-600 text-sm mt-1">$2.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Home Fries</h4>
+                                    <p class="text-gray-600 text-sm">Seasoned home fries</p>
+                                    <p class="text-gray-600 text-sm mt-1">$4.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Omelet Platters Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="omelet-platters">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Omelet Platters</h3>
+                            <p class="text-gray-600">Served with home fries and toast</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Cheese Omelet</h4>
+                                    <p class="text-gray-600 text-sm">Three eggs with melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Western Omelet</h4>
+                                    <p class="text-gray-600 text-sm">Three eggs with ham, peppers, and onions</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Vegetable Omelet</h4>
+                                    <p class="text-gray-600 text-sm">Three eggs with mushrooms, peppers, and onions</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Meat Lovers Omelet</h4>
+                                    <p class="text-gray-600 text-sm">Three eggs with bacon, ham, and sausage</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sandwiches Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="sandwiches">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Sandwiches</h3>
+                            <p class="text-gray-600">Available on roll, sub, or wrap</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Jamesburg Special</h4>
+                                    <p class="text-gray-600 text-sm">Turkey, salami, capicola, pepperoni, and provolone on fresh bread</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Turkey & Swiss</h4>
+                                    <p class="text-gray-600 text-sm">Oven-roasted turkey breast and Swiss cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.49 / $8.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Roast Beef & Provolone</h4>
+                                    <p class="text-gray-600 text-sm">Roast beef with provolone cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99 / $7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Ham & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Ham with American cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99 / $7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Tuna Salad</h4>
+                                    <p class="text-gray-600 text-sm">Fresh tuna salad with lettuce and tomato</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99 / $7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Salad</h4>
+                                    <p class="text-gray-600 text-sm">Fresh chicken salad with lettuce and tomato</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99 / $7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Egg Salad</h4>
+                                    <p class="text-gray-600 text-sm">Fresh egg salad with lettuce and tomato</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99 / $7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Pastrami & Swiss</h4>
+                                    <p class="text-gray-600 text-sm">Pastrami with Swiss cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Corned Beef & Swiss</h4>
+                                    <p class="text-gray-600 text-sm">Corned beef with Swiss cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Salami & Provolone</h4>
+                                    <p class="text-gray-600 text-sm">Salami with provolone cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99 / $7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Bologna & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Bologna with American cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99 / $7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Deluxe Club</h4>
+                                    <p class="text-gray-600 text-sm">Turkey, ham, bacon, lettuce, and tomato</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hot Subs Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="hot-subs">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Hot Subs</h3>
+                            <p class="text-gray-600">Available on sub roll or wrap</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Meatball Parmigiana</h4>
+                                    <p class="text-gray-600 text-sm">Meatballs with marinara sauce and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Parmigiana</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with marinara sauce and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Eggplant Parmigiana</h4>
+                                    <p class="text-gray-600 text-sm">Breaded eggplant with marinara sauce and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Sausage & Peppers</h4>
+                                    <p class="text-gray-600 text-sm">Italian sausage with sautéed peppers and onions</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with lettuce and tomato</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet Parmigiana</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with marinara sauce and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Bacon & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with bacon and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Broccoli Rabe & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with broccoli rabe and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Spinach & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with spinach and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Mushrooms & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with mushrooms and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Broccoli & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with broccoli and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Peppers & Onions</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with sautéed peppers and onions</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Roasted Peppers</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with roasted peppers</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Hot Peppers</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with hot peppers</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Hot Peppers & Onions</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with hot peppers and onions</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Hot Peppers & Mushrooms</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with hot peppers and mushrooms</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Hot Peppers & Broccoli</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with hot peppers and broccoli</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Hot Peppers & Broccoli Rabe</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with hot peppers and broccoli rabe</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Hot Peppers & Spinach</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with hot peppers and spinach</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Hot Peppers & Bacon</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with hot peppers and bacon</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.99 / $9.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Hot Peppers & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with hot peppers and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49 / $9.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet with Hot Peppers, Bacon & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with hot peppers, bacon, and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$9.49 / $10.49</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wraps Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="wraps">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Wraps</h3>
+                            <p class="text-gray-600">Available on regular or spinach wrap</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Caesar Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Grilled chicken with romaine lettuce, parmesan cheese, and Caesar dressing</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Buffalo Chicken Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Grilled chicken with buffalo sauce, lettuce, and blue cheese dressing</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Grilled Chicken Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Grilled chicken with lettuce, tomato, and your choice of dressing</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Turkey Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Turkey with lettuce, tomato, and your choice of dressing</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Roast Beef Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Roast beef with lettuce, tomato, and your choice of dressing</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Tuna Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Tuna salad with lettuce and tomato</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Salad Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Chicken salad with lettuce and tomato</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Egg Salad Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Egg salad with lettuce and tomato</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Veggie Wrap</h4>
+                                    <p class="text-gray-600 text-sm">Lettuce, tomato, cucumber, peppers, and your choice of dressing</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Burgers Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="burgers">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Burgers</h3>
+                            <p class="text-gray-600">Made fresh to order</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Cheese Burger</h4>
+                                    <p class="text-gray-600 text-sm">Classic cheeseburger with your choice of toppings</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Cheese Burger with Fries</h4>
+                                    <p class="text-gray-600 text-sm">Classic cheeseburger served with a side of fries</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Bacon Cheese Burger</h4>
+                                    <p class="text-gray-600 text-sm">Juicy burger topped with smoky bacon and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chopped Cheese Burger/Sub</h4>
+                                    <p class="text-gray-600 text-sm">Classic chopped cheese style burger</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Fat Cat</h4>
+                                    <p class="text-gray-600 text-sm">Burger with lettuce, tomato, mayo, ketchup, and fries piled on a sub roll</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Veggie Burger</h4>
+                                    <p class="text-gray-600 text-sm">Plant-based burger patty with your choice of toppings</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Orders Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="side-orders">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Side Orders</h3>
+                            <p class="text-gray-600">Perfect accompaniments to any meal</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">French Fries</h4>
+                                    <p class="text-gray-600 text-sm">Crispy golden fries</p>
+                                    <p class="text-gray-600 text-sm mt-1">$3.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">French Fries with Gravy or Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Fries topped with your choice of gravy or melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$4.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Seasoned Curly Fries</h4>
+                                    <p class="text-gray-600 text-sm">Crispy curly fries with special seasoning</p>
+                                    <p class="text-gray-600 text-sm mt-1">$4.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Onion Rings</h4>
+                                    <p class="text-gray-600 text-sm">Crispy battered onion rings</p>
+                                    <p class="text-gray-600 text-sm mt-1">$4.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Jalapeno Poppers</h4>
+                                    <p class="text-gray-600 text-sm">Breaded jalapeno peppers stuffed with cream cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$5.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Mozzarella Sticks</h4>
+                                    <p class="text-gray-600 text-sm">Breaded mozzarella sticks served with marinara sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$5.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Nuggets</h4>
+                                    <p class="text-gray-600 text-sm">Bite-sized pieces of breaded chicken</p>
+                                    <p class="text-gray-600 text-sm mt-1">$5.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Wings</h4>
+                                    <p class="text-gray-600 text-sm">Choice of 5 or 10 wings with your favorite sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $10.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Fingers</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken strips served with dipping sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Garden Salad Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="garden-salad">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Garden Salad</h3>
+                            <p class="text-gray-600">Fresh and crisp salads</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Tossed or Caesar Salad</h4>
+                                    <p class="text-gray-600 text-sm">Fresh mixed greens or romaine lettuce with your choice of dressing</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chef Salad</h4>
+                                    <p class="text-gray-600 text-sm">Mixed greens with turkey, ham, cheese, and hard-boiled egg</p>
+                                    <p class="text-gray-600 text-sm mt-1">$9.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Salad</h4>
+                                    <p class="text-gray-600 text-sm">Fresh chicken salad served on a bed of lettuce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Tuna Salad</h4>
+                                    <p class="text-gray-600 text-sm">Fresh tuna salad served on a bed of lettuce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Egg Salad</h4>
+                                    <p class="text-gray-600 text-sm">Fresh egg salad served on a bed of lettuce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Salads & Soup Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="salads-soup">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Salads & Soup</h3>
+                            <p class="text-gray-600">Fresh and delicious</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Macaroni Salad</h4>
+                                    <p class="text-gray-600 text-sm">Classic macaroni salad with mayonnaise dressing</p>
+                                    <p class="text-gray-600 text-sm mt-1">$3.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Potato Salad</h4>
+                                    <p class="text-gray-600 text-sm">Creamy potato salad with eggs and seasonings</p>
+                                    <p class="text-gray-600 text-sm mt-1">$3.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Coleslaw Salad</h4>
+                                    <p class="text-gray-600 text-sm">Fresh cabbage and carrots in a creamy dressing</p>
+                                    <p class="text-gray-600 text-sm mt-1">$3.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Noodle Soup</h4>
+                                    <p class="text-gray-600 text-sm">Homemade chicken noodle soup with vegetables</p>
+                                    <p class="text-gray-600 text-sm mt-1">$4.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Italian Wedding Soup</h4>
+                                    <p class="text-gray-600 text-sm">Traditional Italian soup with meatballs and vegetables</p>
+                                    <p class="text-gray-600 text-sm mt-1">$4.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Cream of Tomato Soup</h4>
+                                    <p class="text-gray-600 text-sm">Rich and creamy tomato soup</p>
+                                    <p class="text-gray-600 text-sm mt-1">$4.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Party Heroes & Platters Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="party-heroes">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Party Heroes & Platters</h3>
+                            <p class="text-gray-600">Perfect for gatherings and celebrations</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Party Hero</h4>
+                                    <p class="text-gray-600 text-sm">A large hero with a variety of meats and cheeses</p>
+                                    <p class="text-gray-600 text-sm mt-1">$24.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Cold Cut Platter</h4>
+                                    <p class="text-gray-600 text-sm">A selection of cold cuts, cheeses, and accompaniments</p>
+                                    <p class="text-gray-600 text-sm mt-1">$14.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Sandwich Platter</h4>
+                                    <p class="text-gray-600 text-sm">A variety of sandwiches for sharing</p>
+                                    <p class="text-gray-600 text-sm mt-1">$12.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Salad Platter</h4>
+                                    <p class="text-gray-600 text-sm">A selection of fresh salads for a party</p>
+                                    <p class="text-gray-600 text-sm mt-1">$10.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cold Cut Platters Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="cold-cut-platters">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Cold Cut Platters</h3>
+                            <p class="text-gray-600">Perfect for parties and gatherings</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Ham and Cheese Platter</h4>
+                                    <p class="text-gray-600 text-sm">Sliced ham with your choice of cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Roast Beef and Cheese Platter</h4>
+                                    <p class="text-gray-600 text-sm">Tender sliced roast beef with your choice of cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Turkey and Cheese Platter</h4>
+                                    <p class="text-gray-600 text-sm">Oven-roasted turkey breast and Swiss cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.49 / $8.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Salami and Cheese Platter</h4>
+                                    <p class="text-gray-600 text-sm">Sliced salami with your choice of cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.49 / $8.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Bologna and Cheese Platter</h4>
+                                    <p class="text-gray-600 text-sm">Sliced bologna with your choice of cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.49 / $8.49</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Honey Turkey and Cheese Platter</h4>
+                                    <p class="text-gray-600 text-sm">Honey-glazed turkey with your choice of cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$7.99 / $8.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hot Platters Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="hot-platters">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Hot Platters</h3>
+                            <p class="text-gray-600">Served with your choice of sides</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Cutlet Platter</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with your choice of sides</p>
+                                    <p class="text-gray-600 text-sm mt-1">$12.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Parmigiana Platter</h4>
+                                    <p class="text-gray-600 text-sm">Breaded chicken cutlet with marinara sauce and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$13.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Meatball Parmigiana Platter</h4>
+                                    <p class="text-gray-600 text-sm">Homemade meatballs with marinara sauce and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$12.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Eggplant Parmigiana Platter</h4>
+                                    <p class="text-gray-600 text-sm">Breaded eggplant with marinara sauce and melted cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$12.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Sausage & Peppers Platter</h4>
+                                    <p class="text-gray-600 text-sm">Italian sausage with sautéed peppers and onions</p>
+                                    <p class="text-gray-600 text-sm mt-1">$12.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sides Section -->
+                <div class="menu-category bg-white rounded-xl shadow-lg p-6" id="sides">
+                    <div class="category-header flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Sides</h3>
+                            <p class="text-gray-600">Perfect accompaniments to any meal</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">French Fries</h4>
+                                    <p class="text-gray-600 text-sm">Crispy golden fries</p>
+                                    <p class="text-gray-600 text-sm mt-1">$3.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Onion Rings</h4>
+                                    <p class="text-gray-600 text-sm">Crispy battered onion rings</p>
+                                    <p class="text-gray-600 text-sm mt-1">$4.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Jalapeno Poppers</h4>
+                                    <p class="text-gray-600 text-sm">Breaded jalapenos filled with cream cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$5.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Mozzarella Sticks</h4>
+                                    <p class="text-gray-600 text-sm">Breaded mozzarella sticks with marinara sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$6.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Chicken Wings</h4>
+                                    <p class="text-gray-600 text-sm">8 pieces with your choice of sauce</p>
+                                    <p class="text-gray-600 text-sm mt-1">$10.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900">Mac & Cheese</h4>
+                                    <p class="text-gray-600 text-sm">Creamy macaroni and cheese</p>
+                                    <p class="text-gray-600 text-sm mt-1">$4.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Us Section (Combined with Contact) -->
+    <section id="visit" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+                <!-- Info Card -->
+                <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Visit Us</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-600 mt-1 mr-4"></i>
+                            <div>
+                                <p class="text-gray-800 font-medium">Address</p>
+                                <p class="text-gray-600">156 Gatzmer Avenue, Jamesburg, NJ 08831</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-blue-600 mt-1 mr-4"></i>
+                            <div>
+                                <p class="text-gray-800 font-medium">Phone</p>
+                                <p class="text-gray-600">(732) 521-3644</p>
+                            </div>
+                        </div>
+                        <!-- <div class="flex items-start">
+                            <i class="fas fa-envelope text-blue-600 mt-1 mr-4"></i>
+                            <div>
+                                <p class="text-gray-800 font-medium">Email</p>
+                                <p class="text-gray-600">info@jamesburgdeli.com</p>
+                            </div>
+                        </div> -->
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-blue-600 mt-1 mr-4"></i>
+                            <div>
+                                <p class="text-gray-800 font-medium">Deli & Grocery Hours</p>
+                                <p class="text-gray-600">Mon–Sat: 6 AM – 10 PM</p>
+                                <p class="text-gray-600">Sun: 7 AM – 8 PM</p>
+                            </div>
+                            </div>
+                            <div class="flex items-start">
+                            <i class="fas fa-fire text-blue-600 mt-1 mr-4"></i>
+                            <div>
+                                <p class="text-gray-800 font-medium">Grill Hours</p>
+                                <p class="text-gray-600">Mon–Sat: 6 AM – 8 PM</p>
+                                <p class="text-gray-600">Sun: 7 AM – 7 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <span class="bg-purple-600 text-white text-sm font-bold py-2 px-4 rounded-full inline-flex items-center">
+                            <i class="fas fa-credit-card mr-2"></i> We Accept EBT
+                        </span>
+                    </div>
+                    
+                    <!-- <div class="mt-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 transition"><i class="fab fa-facebook-f text-2xl"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 transition"><i class="fab fa-instagram text-2xl"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 transition"><i class="fab fa-twitter text-2xl"></i></a>
+                        </div>
+                    </div> -->
+                </div>
+                
+                <!-- Map -->
+                <div class="rounded-xl overflow-hidden shadow-lg h-full">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3036.0000000000005!2d-74.44000000000001!3d40.35000000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDIxJzAwLjAiTiA3NMKwMjYnMjQuMCJX!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-2xl font-bold flex items-center">
+                        <span class="text-white">JAMESBURG</span>
+                        <span class="text-blue-400 ml-2">DELI & GROCERY</span>
+                    </a>
+                    <p class="text-gray-400 mt-2">Fresh sandwiches, groceries, and friendly service since 1985</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#home" class="text-gray-400 hover:text-white transition">Home</a>
+                    <a href="#menu" class="text-gray-400 hover:text-white transition">Menu</a>
+                    <a href="#visit" class="text-gray-400 hover:text-white transition">Visit Us</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center md:text-left">
+                <p class="text-gray-400">&copy; 2023 Jamesburg Deli & Grocery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+                // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = index;
+            }
+            
+            const carouselInner = document.getElementById('carousel-inner');
+            carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+
+        // Collapsible menu sections
+        document.querySelectorAll('.category-toggle').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const content = document.getElementById(targetId);
+                const icon = this.querySelector('i');
+                
+                // Toggle the content
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // To convert this to a multi-page application:
+        // 1. Create a new HTML file called "menu.html"
+        // 2. Copy everything from <section id="menu"> to </section> into the new file
+        // 3. In the new file, add the basic HTML structure (DOCTYPE, head, body)
+        // 4. Copy the necessary CSS and JS to both pages
+        // 5. Update navigation links to point between index.html and menu.html
+        // 6. Make sure all assets (images, CSS, JS) have correct relative paths
+    </script>
+</body>
+</html>
+</body>
+</html>
